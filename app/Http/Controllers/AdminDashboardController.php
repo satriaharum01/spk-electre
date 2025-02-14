@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alternatif;
+use App\Models\Kriteria;
+use App\Models\Penilaian;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -30,44 +32,44 @@ class AdminDashboardController extends Controller
     public function index()
     {
         $this->data['title'] = 'Dashboard Admin';
-        $this->data['c_patients'] = 0;
-        $this->data['c_doctors'] = 0;
-        $this->data['c_appointments'] = 0;
-        $this->data['c_payments'] = 0;
+        $this->data['c_alternatif'] = $this->countAlternatif();
+        $this->data['c_kriteria'] = $this->countKriteria();
+        $this->data['c_max'] = $this->maxValueElectre();
+        $this->data['c_min'] = $this->minValueElectre();
 
-        $this->data['chart'] = $this->graph_area();
+        $this->data['chart'] = $this->hitungElectreLaravel();
         return view('admin/dashboard/index', $this->data);
     }
 
 
 
     //COUNTERS
-    public function count_patients()
+    public function countAlternatif()
     {
-        $data = Patients::select('*')->count();
+        $data = Alternatif::select('*')->count();
 
         return $data;
     }
 
-    public function count_doctors()
+    public function countKriteria()
     {
-        $data = Doctors::select('*')->count();
+        $data = Kriteria::select('*')->count();
 
         return $data;
     }
 
-    public function count_appointments()
+    public function maxValueElectre()
     {
-        $data = Appointments::select('*')->count();
+        $rank = $this->hitungElectreLaravel();
 
-        return $data;
+        return $rank[0]['nama'];
     }
 
-    public function count_payments()
+    public function minValueElectre()
     {
-        $data = Billing::select('*')->where('payment_status', 'Paid')->sum('total_amount');
-
-        return number_format($data, 0);
+        $rank = $this->hitungElectreLaravel();
+        $last = end($rank);
+        return $last['nama'];
     }
 
     //GRAPH

@@ -21,4 +21,9 @@ class Alternatif extends Model
     {
         return $this->inputType;
     }
+
+    public function penilaian()
+    {
+        return $this->hasMany(Penilaian::class, 'id_alternatif');
+    }
 }

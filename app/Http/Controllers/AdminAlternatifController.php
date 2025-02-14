@@ -42,7 +42,7 @@ class AdminAlternatifController extends Controller
         $rows = Alternatif::find($id);
         $this->data['title'] = 'Data Alternatif';
         $this->data['sub_title'] = 'Edit Data ';
-        $this->data['fieldTypes'] = (new Deduksi())->getField();
+        $this->data['fieldTypes'] = (new Alternatif())->getField();
         $this->data['load'] = $rows;
         $this->data['action'] = 'admin/alternatif/update/'.$rows->id;
 
@@ -62,7 +62,7 @@ class AdminAlternatifController extends Controller
         $rows = Alternatif::find($id);
 
         $fillAble = (new Alternatif())->getFillable();
-        Alternatif::create($request->only($fillAble));
+        $rows->update($request->only($fillAble));
 
         return redirect($this->page);
     }
@@ -78,7 +78,7 @@ class AdminAlternatifController extends Controller
     public function json()
     {
         $data = Alternatif::select('*')
-                ->orderby('nama', 'DESC')
+                ->orderby('kode', 'ASC')
                 ->get();
 
         return Datatables::of($data)

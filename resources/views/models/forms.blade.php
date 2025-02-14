@@ -11,8 +11,9 @@ use App\Http\helpers\Formula;
         <textarea class="form-control" name="{{$field}}" cols="30" rows="3">{{$value}}</textarea>
         @elseif($type == 'select')
         <select class="form-control" name="{{$field}}" id="{{$field}}">
-            @if($field == 'tingkat_kerusakan')
-                @foreach(Formula::$tingkatKerusakan as $row)
+            @if($field == 'tipe')
+                <option value="" selected disabled>-- Pilih {{ucwords(str_replace(['_id', '_'], [' ', ' '], $field))}}</option>
+                @foreach(Formula::$kriteriaTipe as $row)
                 <option value="{{$row}}" @if($row == $value) selected @endif>{{ucfirst($row)}}</option>
                 @endforeach
             @elseif($field == 'level')

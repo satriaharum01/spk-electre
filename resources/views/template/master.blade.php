@@ -56,7 +56,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form id="compose-form" action="{{ route('set.password') }}" method="POST">
+                <form id="compose-form-password" action="{{ route('set.password') }}" method="POST">
                 <div class="modal-body">
                     @csrf
                     <div class="form-group row">

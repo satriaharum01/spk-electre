@@ -10,10 +10,10 @@
       <ul class="app-menu">
         @if(Auth::user()->level == 'Admin')
         <li><a class="app-menu__item {{ (request()->is('admin/dashboard')) ? 'active' : '' }}" href="{{ route ('admin.dashboard') }}"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <li><a class="app-menu__item {{ (request()->is('admin/alternatif')) ? 'active' : '' }}" href="{{ route ('admin.alternatif') }}"> <i class="app-menu__icon bi bi-person"></i><span class="app-menu__label">Alternatif</span></a></li>
-        <li><a class="app-menu__item {{ (request()->is('admin/dokter')) ? 'active' : '' }}" href=""><i class="app-menu__icon bi bi-person-fill-add"></i><span class="app-menu__label">Kriteria</span></a></li>
-        <li><a class="app-menu__item {{ (request()->is('admin/pasien')) ? 'active' : '' }}" href=""><i class="app-menu__icon bi bi-people"></i><span class="app-menu__label">Penilaian</span></a></li>
-        <li><a class="app-menu__item {{ (request()->is('admin/billing')) ? 'active' : '' }}" href=""><i class="app-menu__icon bi bi-cash"></i><span class="app-menu__label">Hasil</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/alternatif')) ? 'active' : '' }}{{ (request()->is('admin/alternatif/*')) ? 'active' : '' }}" href="{{ route ('admin.alternatif') }}"> <i class="app-menu__icon bi bi-person"></i><span class="app-menu__label">Alternatif</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/kriteria')) ? 'active' : '' }}{{ (request()->is('admin/kriteria/*')) ? 'active' : '' }}" href="{{ route ('admin.kriteria') }}"><i class="app-menu__icon bi bi-alphabet"></i><span class="app-menu__label">Kriteria</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/penilaian')) ? 'active' : '' }}" href="{{ route ('admin.penilaian') }}"><i class="app-menu__icon bi bi-bookmark-check"></i><span class="app-menu__label">Penilaian</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('admin/hasil')) ? 'active' : '' }}" href="{{ route ('admin.hasil') }}"><i class="app-menu__icon bi bi-bar-chart-line-fill"></i><span class="app-menu__label">Hasil</span></a></li>
         @else
         <li><a class="app-menu__item {{ (request()->is('dokter/dashboard')) ? 'active' : '' }}" href="{{ route ('dokter.dashboard') }}"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
         <li><a class="app-menu__item {{ (request()->is('dokter/appointment')) ? 'active' : '' }}" href="{{ route ('dokter.appointment') }}"><i class="app-menu__icon bi bi-calendar"></i><span class="app-menu__label">Appointment</span></a></li>
