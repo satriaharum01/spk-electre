@@ -33,7 +33,7 @@ class HomeController extends Controller
     */
     public function index()
     {
-        return view('landing/index', $this->data);
+        return redirect()->to('account/login');
     }
 
     public function login()

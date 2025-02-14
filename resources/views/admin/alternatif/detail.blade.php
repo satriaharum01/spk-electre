@@ -13,94 +13,24 @@
 <div class="row">
   <div class="col-md-12">
     <div class="tile">
-      <div class="border-bottom d-flex justify-content-end mb-3 pb-2 tile-body">
-        <button type="button" class="btn btn-primary btn-add pull-right">
-          <i class="fa fa-plus"></i> Tambah Data
-        </button>
+      <div class="tile-title border-bottom">
+      {{$sub_title}}
       </div>
       <div class="tile-body">
-        <div class="table-responsive">
-          <table class="table table-hover table-bordered" id="data-width" width="100%">
-            <thead>
-              <tr>
-                <th style="text-align: center" width="10%">No</th>
-                <th>Appointment</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th>Metode Bayar</th>
-                <th style="text-align: center" width="20%">Aksi</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
+        @foreach ($fieldTypes as $field => $type)
+            @include('models.forms', ['field' => $field, 'type' => $type, 'value' => old($field, $load->$field ?? '')])
+        @endforeach
+      </div>
+      
+      <div class="tile-footer">
+        <button type="reset" class="btn btn-danger btn-back" data-bs-dismiss="modal">Kembali</button>
+        <button type="submit" class="btn btn-primary btn-simpan">Simpan</button>
+        <div class="float-right">{{env('APP_NAME')}} - {{$title}}</div>
       </div>
     </div>
   </div>
 </div>
 <!-- akhir isi halaman -->
-@endsection
-@section('modal')
-
-<!-- ============ MODAL DATA  =============== -->
-<div class="modal fade" id="compose" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <div class="justify-content-center modal-header">
-              <center><b>
-              <h4 class="modal-title" id="exampleModalLabel">Tambah Data</h4></b></center>    
-          </div>
-          <form action="#" method="POST" id="compose-form" class="form-horizontal" enctype="multipart/form-data">
-              @csrf
-              <div class="modal-body">
-                <div class="form-group row mb-2">
-                      <label class="col-sm-4">Appointment:</label>
-                      <div class="col-sm-6">
-                          <input type="text" name="appointment_id" class="form-control" hidden/>
-                          <input type="text" name="kode" class="bg-dark-subtle form-control" readonly/>
-                      </div>
-                      <button type="button" class="btn btn-primary col-md-1" data-bs-target="#data-modal-appointment" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="bi bi-search"></i> </button>
-                  
-                  </div>
-                  <div class="form-group row mb-2">
-                      <label class="col-sm-4">Jumlah:</label>
-                      <div class="col-sm-8">
-                        <input type="number" name="total_amount" class="form-control" required/>
-                      </div>
-                  </div>
-                  <div class="form-group row mb-2">
-                      <label class="col-sm-4">Status Pembayaran:</label>
-                      <div class="col-sm-8">
-                          <select name="payment_status" class="form-control" required>
-                              <option value="" disabled selected>Pilih</option>
-                              <option value="Pending">Pending</option>
-                              <option value="Paid">Paid</option>
-                          </select>
-                      </div>
-                  </div>
-                  <div class="form-group row mb-2">
-                      <label class="col-sm-4">Metode Pembayaran:</label>
-                      <div class="col-sm-8">
-                          <select name="payment_method" class="form-control" required>
-                              <option value="" disabled selected>Pilih</option>
-                              <option value="Cash">Cash</option>
-                              <option value="Credit Card">Credit Card</option>
-                              <option value="Insurance">Insurance</option>
-                          </select>
-                      </div>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-              </div>
-          </form>
-    </div>
-  </div>
-</div>
-<!--- END MODAL DATA --->
-
-@include('template.modal.appointment')
 @endsection
 @section('custom_script')
 <script>
