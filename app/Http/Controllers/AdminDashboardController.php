@@ -71,7 +71,7 @@ class AdminDashboardController extends Controller
         $last = end($rank);
         return $last['nama'];
     }
-
+    
     //GRAPH
     public function graph_area()
     {

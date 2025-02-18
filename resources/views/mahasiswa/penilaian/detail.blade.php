@@ -35,7 +35,6 @@
 
         <div class="tile-footer">
           <button type="reset" class="btn btn-danger btn-back" data-bs-dismiss="modal">Kembali</button>
-          <button type="button" class="btn btn-primary btn-simpan">Simpan</button>
           <div class="pull-right">{{env('APP_NAME')}} - {{$title}}</div>
         </div>
       </form>
@@ -48,7 +47,7 @@
 <script>
   
   $("body").on("click", ".btn-back", function () {
-    window.location.href = "{{route('admin.penilaian')}}";
+    window.location.href = "{{route('mahasiswa.penilaian')}}";
   })
 </script>
 @include('template.modal.appointmentjs')

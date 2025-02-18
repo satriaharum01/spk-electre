@@ -46,11 +46,10 @@ class MahasiswaDashboardController extends Controller
     //COUNTERS
     public function countAlternatif()
     {
-        $data = Alternatif::select('kode')->where('id',Auth::user()->id_alternatif)->first();
-        if(empty($data))
-        {
+        $data = Alternatif::select('kode')->where('id', Auth::user()->id_alternatif)->first();
+        if (empty($data)) {
             $data = 'Not Set';
-        }else{
+        } else {
             $data = $data->kode;
         }
         return $data;
@@ -65,18 +64,36 @@ class MahasiswaDashboardController extends Controller
 
     public function maxValueElectre()
     {
-        $rank = $this->hitungElectreLaravel();
+        $rank = $this->findMyRank();
 
-        return $rank[0]['nama'];
+        return $rank['rank'];
     }
 
     public function minValueElectre()
     {
-        $rank = $this->hitungElectreLaravel();
-        $last = end($rank);
-        return $last['nama'];
+        $rank = $this->findMyRank();
+        return $rank['total_nilai'];
     }
 
+    public function findMyRank()
+    {
+        $alternatif = Alternatif::find(Auth::user()->id_alternatif);
+
+        if (!$alternatif) {
+            $search = [
+                'rank' => 'Error',
+                'total_nilai'=> 0
+            ];
+            return $search; // Hindari error jika data tidak ditemukan
+        }
+        $rank = $this->hitungElectreLaravel();
+
+        $search = Arr::first($rank, function ($item) use ($alternatif) {
+            return $item['kode'] === $alternatif->kode;
+        });
+
+        return $search;
+    }
     //GRAPH
     public function graph_area()
     {

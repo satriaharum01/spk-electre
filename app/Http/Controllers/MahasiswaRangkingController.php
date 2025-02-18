@@ -11,15 +11,15 @@ use App\Models\Kriteria;
 use App\Models\SubKriteria;
 use App\Models\Penilaian;
 
-class AdminRangkingController extends Controller
+class MahasiswaRangkingController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
         $this->data['title'] = 'Data Hasil Perhitungan';
-        $this->data[ 'link' ] = '/admin/hasil';
-        $this->page = 'admin/hasil';
-        $this->view = 'admin/hasil/index';
+        $this->data[ 'link' ] = '/mahasiswa/hasil';
+        $this->page = 'mahasiswa/hasil';
+        $this->view = 'mahasiswa/hasil/index';
         $this->data['page'] = $this->page;
     }
 
@@ -27,7 +27,7 @@ class AdminRangkingController extends Controller
     {
         $this->data['sub_title'] = 'List Hasil Perhitungan Electre';
 
-        return view('admin/hasil/index', $this->data);
+        return view('mahasiswa/hasil/index', $this->data);
     }
 
     public function json($p1 = null)

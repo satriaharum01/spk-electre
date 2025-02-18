@@ -117,10 +117,7 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->group(function () {
 
     Route::prefix('penilaian')->name('penilaian.')->group(function () {
         Route::POST('/save', [App\Http\Controllers\MahasiswaPenilaianController::class, 'store']);
-        Route::POST('/update/{id}', [App\Http\Controllers\MahasiswaPenilaianController::class, 'update']);
-        Route::GET('/delete/{id}', [App\Http\Controllers\MahasiswaPenilaianController::class, 'destroy']);
         Route::get('/json', [App\Http\Controllers\MahasiswaPenilaianController::class, 'json']);
-        Route::get('/find/{id}', [App\Http\Controllers\MahasiswaPenilaianController::class, 'find']);
     });
 
     Route::prefix('hasil')->name('hasil.')->group(function () {

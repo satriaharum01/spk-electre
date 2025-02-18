@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use DataTables;
 use App\Models\Alternatif;
 use App\Models\Kriteria;
@@ -25,19 +26,10 @@ class MahasiswaPenilaianController extends Controller
 
     public function index()
     {
-        $this->data['sub_title'] = 'List Data Penilaian';
-        $kriteria = Kriteria::select('*')->orderBy('kode', 'ASC')->get();
-        $this->data['kriteria'] = $kriteria;
-
-        return view('mahasiswa/penilaian/index', $this->data);
-    }
-
-
-    public function edit($id)
-    {
+        $id = Auth::user()->id_alternatif;
         $alternatif = Alternatif::find($id);
         $this->data['title'] = 'Nilai Alternatif';
-        $this->data['sub_title'] = 'Edit Data ';
+        $this->data['sub_title'] = 'List Data ';
         $load = Penilaian::where('id_alternatif', $id)->pluck('nilai', 'id_kriteria');
         $this->data['load'] = $load;
         $this->data['alternatif'] = $alternatif;
@@ -49,27 +41,7 @@ class MahasiswaPenilaianController extends Controller
         return view('mahasiswa/penilaian/detail', $this->data);
     }
 
-    public function destroy($id)
-    {
-        $rows = Penilaian::select('*')->where('id_alternatif', $id);
-        $rows->delete();
 
-        return redirect($this->page);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $data = $request->input('kriteria');
-
-        foreach ($data as $id_kriteria => $values) {
-            Penilaian::updateOrCreate(
-                ['id_alternatif' => $id, 'id_kriteria' => $id_kriteria],
-                ['nilai' => $values['nilai']]
-            );
-        }
-
-        return redirect($this->page);
-    }
 
     public function json()
     {
@@ -90,15 +62,6 @@ class MahasiswaPenilaianController extends Controller
             }
         }
 
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->make(true);
+        return $data;
     }
-
-    public function find($id)
-    {
-        $data = Penilaian::select('*')->where('id', $id)->first();
-        return json_encode($data);
-    }
-
 }

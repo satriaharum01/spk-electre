@@ -17,7 +17,7 @@
     <div class="widget-small primary coloured-icon">
       <i class="icon bi bi-people fs-1"></i>
       <div class="info">
-        <h4>Kode Alternatif</h4>
+        <h4>Kode</h4>
         <p><b>{{$c_alternatif}}</b></p>
       </div>
     </div>
@@ -33,18 +33,18 @@
   </div>
   <div class="col-md-6 col-lg-3">
     <div class="widget-small warning coloured-icon">
-      <i class="icon bi bi-graph-up-arrow fs-1"></i>
+      <i class="icon bi bi-trophy fs-1"></i>
       <div class="info">
-        <h4>Terbaik</h4>
+        <h4>Ranking</h4>
         <p><b>{{$c_max}}</b></p>
       </div>
     </div>
   </div>
   <div class="col-md-6 col-lg-3">
-    <div class="widget-small danger coloured-icon">
-      <i class="icon bi bi-graph-down-arrow  fs-1"></i>
+    <div class="widget-small primary coloured-icon">
+      <i class="icon bi bi-graph-up-arrow  fs-1"></i>
       <div class="info">
-        <h4>Terburuk</h4>
+        <h4>Total Nilai</h4>
         <p><b>{{$c_min}}</b></p>
       </div>
     </div>
