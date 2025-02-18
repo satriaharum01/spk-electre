@@ -33,6 +33,9 @@
     @endif
     $(document).ready(function() {
       
+      @if ($errors->any())
+        $('#errorModal').modal('toggle');
+      @endif
       $('.select-2-control').select2({
         dropdownParent: $("#compose")
       });
@@ -119,6 +122,28 @@
                 }
             });
         })
+        $(".btn-simpan").on("click", function(e) {
+            Swal.fire({
+                title: "Apakah data sudah sesuai ?",
+                text: "Data akan disimpan!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Simpan!",
+                cancelButtonText: "Batal"
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire(
+                        'Data Disimpan!',
+                        '',
+                        'success'
+                    );
+                    $("#compose-form").submit(); // Submit form jika Yes ditekan
+                }
+            });
+        });
+
         $("body").on("click", ".btn-reject", function() {
             var x = jQuery(this).attr("data-id");
             var y = jQuery(this).attr("data-handler");

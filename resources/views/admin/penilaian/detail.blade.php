@@ -16,7 +16,7 @@
       <div class="tile-title border-bottom">
       {{$sub_title}}
       </div>
-      <form class="" method="POST" enctype="multipart/form-data" action="{{url($action)}}">
+      <form id="compose-form" class="" method="POST" enctype="multipart/form-data" action="{{url($action)}}">
       @csrf
         <div class="tile-body row">
         <div class="col-md-12 col-lg-12">
@@ -35,7 +35,7 @@
 
         <div class="tile-footer">
           <button type="reset" class="btn btn-danger btn-back" data-bs-dismiss="modal">Kembali</button>
-          <button type="submit" class="btn btn-primary btn-simpan">Simpan</button>
+          <button type="button" class="btn btn-primary btn-simpan">Simpan</button>
           <div class="pull-right">{{env('APP_NAME')}} - {{$title}}</div>
         </div>
       </form>
@@ -48,7 +48,7 @@
 <script>
   
   $("body").on("click", ".btn-back", function () {
-    window.location.href = "{{route('admin.alternatif')}}";
+    window.location.href = "{{route('admin.penilaian')}}";
   })
 </script>
 @include('template.modal.appointmentjs')

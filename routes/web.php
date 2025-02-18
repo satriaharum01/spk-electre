@@ -92,3 +92,43 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/find/{id}', [App\Http\Controllers\AdminPenggunaController::class, 'find']);
     });
 });
+
+
+Route::prefix('mahasiswa')->name('mahasiswa.')->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\MahasiswaDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/kriteria', [App\Http\Controllers\MahasiswaKriteriaController::class, 'index'])->name('kriteria');
+    Route::get('/penilaian', [App\Http\Controllers\MahasiswaPenilaianController::class, 'index'])->name('penilaian');
+    Route::get('/hasil', [App\Http\Controllers\MahasiswaRangkingController::class, 'index'])->name('hasil');
+    Route::get('/profile', [App\Http\Controllers\MahasiswaProfileController::class, 'index'])->name('profile');
+
+    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::get('/json', [App\Http\Controllers\MahasiswaDashboardController::class, 'json']);
+        Route::get('/barChart', [App\Http\Controllers\MahasiswaDashboardController::class, 'barChart']);
+    });
+
+    Route::prefix('kriteria')->name('kriteria.')->group(function () {
+        Route::get('/detail/{id}', [App\Http\Controllers\MahasiswaKriteriaController::class, 'detail'])->name('detail');
+        Route::get('/json', [App\Http\Controllers\MahasiswaKriteriaController::class, 'json']);
+        Route::get('/find/{id}', [App\Http\Controllers\MahasiswaKriteriaController::class, 'find']);
+
+        //Sub Kriteria
+        Route::get('{od}/json', [App\Http\Controllers\MahasiswaKriteriaController::class, 'json_sub']);
+    });
+
+    Route::prefix('penilaian')->name('penilaian.')->group(function () {
+        Route::POST('/save', [App\Http\Controllers\MahasiswaPenilaianController::class, 'store']);
+        Route::POST('/update/{id}', [App\Http\Controllers\MahasiswaPenilaianController::class, 'update']);
+        Route::GET('/delete/{id}', [App\Http\Controllers\MahasiswaPenilaianController::class, 'destroy']);
+        Route::get('/json', [App\Http\Controllers\MahasiswaPenilaianController::class, 'json']);
+        Route::get('/find/{id}', [App\Http\Controllers\MahasiswaPenilaianController::class, 'find']);
+    });
+
+    Route::prefix('hasil')->name('hasil.')->group(function () {
+        Route::get('/json', [App\Http\Controllers\MahasiswaRangkingController::class, 'hitungElectreLaravel'])->name('data');
+    });
+
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::POST('/update/{id}', [App\Http\Controllers\AdminProfileController::class, 'update']);
+    });
+
+});

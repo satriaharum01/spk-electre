@@ -84,7 +84,8 @@ class AdminPenilaianController extends Controller
                 if (!$penilaian) {
                     $row->{$arr->kode} = 'Belum Diisi';
                 } else {
-                    $row->{$arr->kode} = $penilaian->subKriteria ? $penilaian->subKriteria->sub_kriteria : 'Belum Diisi';
+                    $sub_kriteria = SubKriteria::select('sub_kriteria')->where('id_kriteria', $penilaian->id_kriteria)->where('nilai', $penilaian->nilai)->first();
+                    $row->{$arr->kode} = $sub_kriteria ? $sub_kriteria->sub_kriteria : 'Belum Diisi';
                 }
             }
         }

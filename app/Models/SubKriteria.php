@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\ValidationException;
 
 class SubKriteria extends Model
 {
@@ -17,15 +18,41 @@ class SubKriteria extends Model
         'nilai' => 'number'
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->validate();
+        });
+
+        static::updating(function ($model) {
+            $model->validate();
+        });
+    }
+
+    public function validate()
+    {
+        $validator = validator($this->attributes, [
+            'id_kriteria'  => 'required|integer|min:1',
+            'sub_kriteria' => 'required|integer|min:1',
+            'nilai'   => 'required|integer|min:1',
+        ]);
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+    }
+
     public function getField()
     {
         return $this->inputType;
     }
-    
+
     public function cariKriteria()
     {
         return $this->belongsTo('App\Models\Kriteria', 'id_kriteria', 'id')->withDefault(function ($data) {
-            if (collect($data->getFillable())->every(fn($attr) => $data->$attr === null)) {
+            if (collect($data->getFillable())->every(fn ($attr) => $data->$attr === null)) {
                 return null;
             }
             return $data;

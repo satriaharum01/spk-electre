@@ -71,7 +71,7 @@
               </div>
               <div class="modal-footer">
                 <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="button" class="btn btn-primary btn-simpan">Simpan</button>
               </div>
           </form>
     </div>
