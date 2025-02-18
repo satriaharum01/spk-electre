@@ -1,8 +1,8 @@
 @extends('auth.app')
 
 @section('content')
-    <section class="material-half-bg">
-        <div class="cover"></div>
+    <section style="background-image: url({{asset('images/bg-login.png')}}); background-size:cover;" class="material-half-bg">
+        
     </section>
     <section class="login-content">
       <div class="logo text-center">

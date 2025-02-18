@@ -2,9 +2,9 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 15, 2025 at 11:57 AM
--- Server version: 10.4.19-MariaDB
+-- Host: 127.0.0.1:3306
+-- Generation Time: Feb 18, 2025 at 06:45 PM
+-- Server version: 10.4.11-MariaDB
 -- PHP Version: 8.0.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -561,6 +561,8 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `level` enum('Admin','Mahasiswa') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Mahasiswa',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_alternatif` int(11) NOT NULL DEFAULT 0,
+  `faces` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.png',
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -569,9 +571,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', '$2y$10$.zyv.mN4ewS36HGJcBDXWua88yylf2MwZRK3603IZfRfoNZhJEvHy', 'Admin', NULL, '2024-10-20 15:44:16', '2024-10-20 15:44:16'),
-(2, 'Dr. Emily Clark', 'emilyclark@gmail.com', '$2y$10$.zyv.mN4ewS36HGJcBDXWua88yylf2MwZRK3603IZfRfoNZhJEvHy', '', NULL, '2024-10-20 15:44:16', '2024-10-20 15:44:16');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `level`, `remember_token`, `id_alternatif`, `faces`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@gmail.com', '$2y$10$.zyv.mN4ewS36HGJcBDXWua88yylf2MwZRK3603IZfRfoNZhJEvHy', 'Admin', NULL, 0, 'default.png', '2024-10-20 15:44:16', '2024-10-20 15:44:16'),
+(2, 'Muhammad Rasya', 'm.rasya@gmail.com', '$2y$10$.zyv.mN4ewS36HGJcBDXWua88yylf2MwZRK3603IZfRfoNZhJEvHy', 'Mahasiswa', NULL, 1, 'default.png', '2024-10-20 15:44:16', '2024-10-20 15:44:16'),
+(3, 'Mhd. Ahyar Faturrahim', 'mhdahyar@gmail.com', '$2y$10$vlMFkNs7gGqSzBzZCTuQjOk2h8mbM8l3/q8fvjKlTqw44YbIgTMtC', 'Mahasiswa', NULL, 10, 'default.png', '2025-02-18 16:44:36', '2025-02-18 16:44:36');
 
 --
 -- Indexes for dumped tables
@@ -724,7 +727,7 @@ ALTER TABLE `sub_kriteria`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
