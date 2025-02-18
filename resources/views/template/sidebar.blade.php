@@ -16,11 +16,10 @@
         <li><a class="app-menu__item {{ (request()->is('admin/hasil')) ? 'active' : '' }}" href="{{ route ('admin.hasil') }}"><i class="app-menu__icon bi bi-bar-chart-line-fill"></i><span class="app-menu__label">Hasil</span></a></li>
         <li><a class="app-menu__item {{ (request()->is('admin/pengguna')) ? 'active' : '' }}{{ (request()->is('admin/pengguna/*')) ? 'active' : '' }}" href="{{ route ('admin.pengguna') }}"><i class="app-menu__icon bi bi-people"></i><span class="app-menu__label">Pengguna</span></a></li>
         @else
-        <li><a class="app-menu__item {{ (request()->is('dokter/dashboard')) ? 'active' : '' }}" href="{{ route ('dokter.dashboard') }}"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <li><a class="app-menu__item {{ (request()->is('dokter/appointment')) ? 'active' : '' }}" href="{{ route ('dokter.appointment') }}"><i class="app-menu__icon bi bi-calendar"></i><span class="app-menu__label">Appointment</span></a></li>
-        <li><a class="app-menu__item {{ (request()->is('dokter/pasien')) ? 'active' : '' }}{{ (request()->is('dokter/pasien/*')) ? 'active' : '' }}" href="{{ route ('dokter.pasien') }}"><i class="app-menu__icon bi bi-people"></i><span class="app-menu__label">Pasien</span></a></li>
-        <li><a class="app-menu__item {{ (request()->is('dokter/medical')) ? 'active' : '' }}" href="{{ route ('dokter.medical') }}"><i class="app-menu__icon bi bi-clipboard2-pulse"></i><span class="app-menu__label">Rekam Medis</span></a></li>
-        <li><a class="app-menu__item {{ (request()->is('dokter/prescriptions')) ? 'active' : '' }}" href="{{ route ('dokter.prescriptions') }}"><i class="app-menu__icon bi bi-capsule-pill"></i><span class="app-menu__label">Obat/Resep</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('mahasiswa/dashboard')) ? 'active' : '' }}" href="{{ route ('mahasiswa.dashboard') }}"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('mahasiswa/kriteria')) ? 'active' : '' }}{{ (request()->is('mahasiswa/kriteria/*')) ? 'active' : '' }}" href="{{ route ('mahasiswa.kriteria') }}"><i class="app-menu__icon bi bi-alphabet"></i><span class="app-menu__label">Kriteria</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('mahasiswa/penilaian')) ? 'active' : '' }}" href="{{ route ('mahasiswa.penilaian') }}"><i class="app-menu__icon bi bi-bookmark-check"></i><span class="app-menu__label">Penilaian</span></a></li>
+        <li><a class="app-menu__item {{ (request()->is('mahasiswa/hasil')) ? 'active' : '' }}" href="{{ route ('mahasiswa.hasil') }}"><i class="app-menu__icon bi bi-bar-chart-line-fill"></i><span class="app-menu__label">Hasil</span></a></li>
         
         @endif
         <!-- Disabled /->

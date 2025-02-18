@@ -46,8 +46,13 @@ class MahasiswaDashboardController extends Controller
     //COUNTERS
     public function countAlternatif()
     {
-        $data = Alternatif::select('*')->count();
-
+        $data = Alternatif::select('kode')->where('id',Auth::user()->id_alternatif)->first();
+        if(empty($data))
+        {
+            $data = 'Not Set';
+        }else{
+            $data = $data->kode;
+        }
         return $data;
     }
 
