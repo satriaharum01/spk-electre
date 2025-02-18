@@ -3800,7 +3800,9 @@ textarea.form-control-lg {
   border-bottom-right-radius: var(--bs-dropdown-inner-border-radius);
   border-bottom-left-radius: var(--bs-dropdown-inner-border-radius);
 }
-
+.dropdown > a.active{
+  color:yellow;
+}
 .dropdown-menu-start {
   --bs-position: start;
 }

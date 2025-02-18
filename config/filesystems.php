@@ -63,6 +63,11 @@ return [
             'root'   => public_path() . '/assets/upload',
         ],
 
+        'faces_upload' => [
+            'driver' => 'local',
+            'root'   => base_path('/assets/img/faces') ,
+        ],
+        
         'pdf_upload' => [
             'driver' => 'local',
             'root'   => public_path() . '/assets/upload/file/pdf',

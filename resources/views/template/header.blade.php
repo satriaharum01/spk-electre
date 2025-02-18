@@ -8,9 +8,9 @@
       <ul class="dropdown-menu settings-menu dropdown-menu-right">
         
         @if(Auth::user()->level == 'Admin')
-        <li><a class="dropdown-item" href="{{route('admin.profile')}}"><i class="bi bi-person me-2 fs-5"></i> Profile</a></li>
+        <li><a class="{{ (request()->is('admin/profile')) ? 'active' : '' }} dropdown-item" href="{{route('admin.profile')}}"><i class="bi bi-person me-2 fs-5"></i> Profile</a></li>
         @else
-        <li><a class="dropdown-item" href="{{route('mahasiswa.profile')}}"><i class="bi bi-person me-2 fs-5"></i> Profile</a></li>
+        <li><a class="{{ (request()->is('mahasiswa/profile')) ? 'active' : '' }} dropdown-item" href="{{route('mahasiswa.profile')}}"><i class="bi bi-person me-2 fs-5"></i> Profile</a></li>
         @endif
         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="bi bi-box-arrow-right me-2 fs-5"></i> Logout</a></li>
       </ul>

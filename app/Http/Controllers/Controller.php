@@ -27,6 +27,13 @@ class Controller extends BaseController
     public $klasifikasi = array('A','B','C');
 
 
+    public function profile_destroy($filename)
+    {
+        if (File::exists(public_path('/assets/img/faces/' . $filename . ''))) {
+            File::delete(public_path('/assets/img/faces/' . $filename . ''));
+        }
+    }
+    
     public function buat_notif($title, $icon, $color)
     {
         $data = [
