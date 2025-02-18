@@ -28,9 +28,12 @@ class AdminPenggunaController extends Controller
         return view('admin/pengguna/index', $this->data);
     }
 
-
     public function new()
     {
+        $rows = User::find(1);
+        $rows->id = 0;
+        $rows->nama = 'New Admin';
+        $this->data['load'] = $rows;
         $this->data['sub_title'] = 'Tambah Data ';
         $this->data['fieldTypes'] = (new User())->getField();
         $this->data['action'] = 'admin/pengguna/save';
@@ -40,9 +43,9 @@ class AdminPenggunaController extends Controller
 
     public function edit($id)
     {
-        $rows = User::find($id);
+        $rows = Alternatif::find($id);
         $this->data['title'] = 'Data Pengguna';
-        $this->data['sub_title'] = 'Edit Data ';
+        $this->data['sub_title'] = 'Edit Akun Alternatif ';
         $this->data['fieldTypes'] = (new User())->getField();
         $this->data['load'] = $rows;
         $this->data['action'] = 'admin/pengguna/update/'.$rows->id;
@@ -55,14 +58,27 @@ class AdminPenggunaController extends Controller
         $rows = User::find($id);
 
         $fillAble = (new User())->getFillable();
-        $data = $request->only($fillAble);
-        if ($request->filled('password')) {
-            $data['password'] = Hash::make($request->password);
+        if (empty($rows)) {
+            $data = $request->only($fillAble);
+            if ($request->filled('password')) {
+                $data['password'] = Hash::make($request->password);
+            } else {
+                unset($data['password']);
+            }
+
+            User::create($data);
+
         } else {
-            unset($data['password']);
+            $data = $request->only($fillAble);
+            if ($request->filled('password')) {
+                $data['password'] = Hash::make($request->password);
+            } else {
+                unset($data['password']);
+            }
+
+            $rows->update($data);
         }
 
-        $rows->update($data);
 
         return redirect($this->page);
     }

@@ -4,9 +4,11 @@
   <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <button class="btn btn-primary btn-add pull-right" data-toggle="modal" data-target="#compose"><i class="mdi mdi-plus"></i> Tambah Data</button>
-        <h3 class="card-title">{{$title}}</h3>
-        <div class="table-responsive pt-5">
+        <button type="button" class="btn btn-primary btn-add pull-right">
+          <i class="fa fa-plus"></i> Tambah Data
+        </button>
+        <h3 class="card-title border-bottom mb-3 pb-3">{{$title}}</h3>
+        <div class="table-responsive pt-2">
           <table class="display table table-bordered table-hover" id="data-width" width="100%">
             <thead class="text-center">
               <tr>

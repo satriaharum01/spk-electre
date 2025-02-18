@@ -28,6 +28,19 @@ class User extends Authenticatable
         'id_alternatif'
     ];
 
+    protected $inputType = [
+        'name' => 'text',
+        'email' => 'email',
+        'password' => 'password',
+        'level' => 'select',
+        'id_alternatif' => 'number'
+    ];
+
+    public function getField()
+    {
+        return $this->inputType;
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
