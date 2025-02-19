@@ -44,10 +44,18 @@ class AdminPenggunaController extends Controller
     public function edit($id)
     {
         $rows = Alternatif::find($id);
+        $cek = User::select('*')->where('id_alternatif',$id)->first();
+        if(!$cek)
+        {
+            $user = null;
+        }else{
+            $user = $cek;
+        }
         $this->data['title'] = 'Data Pengguna';
         $this->data['sub_title'] = 'Edit Akun Alternatif ';
         $this->data['fieldTypes'] = (new User())->getField();
         $this->data['load'] = $rows;
+        $this->data['user'] = $user;
         $this->data['action'] = 'admin/pengguna/update/'.$rows->id;
 
         return view('admin/pengguna/detail', $this->data);

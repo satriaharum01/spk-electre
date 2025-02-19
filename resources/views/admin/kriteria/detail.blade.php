@@ -39,7 +39,7 @@
 <script>
   
   $("body").on("click", ".btn-back", function () {
-    window.location.href = "{{route('admin.alternatif')}}";
+    window.location.href = "{{route('admin.kriteria')}}";
   })
 </script>
 @include('template.modal.appointmentjs')

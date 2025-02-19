@@ -46,7 +46,6 @@
 
           <div class="tile-footer d-flex justify-content-between">
             <div>
-            <button type="reset" class="btn btn-danger btn-back" data-bs-dismiss="modal">Kembali</button>
             <button type="submit" class="btn btn-primary btn-simpan">Simpan</button>
             </div>
             <div class="float-right">{{env('APP_NAME')}} - {{$title}}</div>

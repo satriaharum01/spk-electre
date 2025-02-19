@@ -29,7 +29,7 @@
         
         <div class="tile-body row">
           @foreach ($fieldTypes as $field => $type)
-              @include('models.formUsers', ['field' => $field, 'type' => $type, 'value' => old($field, $load->$field ?? '')])
+              @include('models.formUsers', ['field' => $field, 'type' => $type, 'value' => old($field, $user->$field ?? '')])
           @endforeach
         </div>
 
@@ -48,7 +48,7 @@
 <script>
   
   $("body").on("click", ".btn-back", function () {
-    window.location.href = "{{route('admin.alternatif')}}";
+    window.location.href = "{{route('admin.pengguna')}}";
   })
 </script>
 @include('template.modal.appointmentjs')
