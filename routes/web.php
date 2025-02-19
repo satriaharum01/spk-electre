@@ -75,7 +75,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     Route::prefix('hasil')->name('hasil.')->group(function () {
-        Route::get('/json', [App\Http\Controllers\AdminRangkingController::class, 'hitungElectreLaravel'])->name('data');
+        Route::get('/json', [App\Http\Controllers\AdminRangkingController::class, 'json'])->name('data');
     });
 
     Route::prefix('profile')->name('profile.')->group(function () {
@@ -121,7 +121,7 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->group(function () {
     });
 
     Route::prefix('hasil')->name('hasil.')->group(function () {
-        Route::get('/json', [App\Http\Controllers\MahasiswaRangkingController::class, 'hitungElectreLaravel'])->name('data');
+        Route::get('/json', [App\Http\Controllers\MahasiswaRangkingController::class, 'json'])->name('data');
     });
 
     Route::prefix('profile')->name('profile.')->group(function () {

@@ -166,7 +166,9 @@ class Controller extends BaseController
             ];
         }
 
-        usort($ranking, fn ($a, $b) => $b['agregate'] <=> $a['agregate'] ?: $b['total_nilai'] <=> $a['total_nilai']);
+        //usort($ranking, fn ($a, $b) => $b['agregate'] <=> $a['agregate'] ?: $b['total_nilai'] <=> $a['total_nilai']);
+
+        usort($ranking, fn ($a, $b) => $b['total_nilai'] <=> $a['total_nilai']);
 
         // Tambahkan rank
         foreach ($ranking as $index => &$r) {

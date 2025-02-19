@@ -31,63 +31,20 @@ class AdminDashboardController extends Controller
     */
     public function index()
     {
-        $this->data['title'] = 'Dashboard Admin';
-        $this->data['c_alternatif'] = $this->countAlternatif();
-        $this->data['c_kriteria'] = $this->countKriteria();
-        $this->data['c_max'] = $this->maxValueElectre();
-        $this->data['c_min'] = $this->minValueElectre();
+        $electreData = $this->hitungElectreLaravel();
+        usort($electreData, fn ($a, $b) => $a['total_nilai'] <=> $b['total_nilai']);
 
-        $this->data['chart'] = $this->hitungElectreLaravel();
+        $this->data = [
+            'title' => 'Dashboard Admin',
+            'c_alternatif' => Alternatif::count(),
+            'c_kriteria' => Kriteria::count(),
+            'c_max' => end($electreData)['nama'],
+            'c_min' => $electreData[0]['nama']
+        ];
+
+        usort($electreData, fn($a, $b) => strnatcmp($a['kode'], $b['kode']));
+        $this->data['chart'] = $electreData;
+
         return view('admin/dashboard/index', $this->data);
-    }
-
-
-
-    //COUNTERS
-    public function countAlternatif()
-    {
-        $data = Alternatif::select('*')->count();
-
-        return $data;
-    }
-
-    public function countKriteria()
-    {
-        $data = Kriteria::select('*')->count();
-
-        return $data;
-    }
-
-    public function maxValueElectre()
-    {
-        $rank = $this->hitungElectreLaravel();
-
-        return $rank[0]['nama'];
-    }
-
-    public function minValueElectre()
-    {
-        $rank = $this->hitungElectreLaravel();
-        $last = end($rank);
-        return $last['nama'];
-    }
-    
-    //GRAPH
-    public function graph_area()
-    {
-        $out = array();
-        $date = date('Y-');
-        for ($i = 1; $i <= 12 ; $i++) {
-            if ($i < 10) {
-                $finder = $date.'0'.$i;
-            } else {
-                $finder = $date.$i;
-            }
-            $data = Alternatif::select('*')->where('created_at', '>=', $finder.'-00')->where('created_at', '<=', $finder.'-31')->get();
-            $result = 0;
-            $out[] = $result;
-        }
-
-        return json_encode($out);
     }
 }
