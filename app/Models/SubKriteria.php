@@ -34,9 +34,9 @@ class SubKriteria extends Model
     public function validate()
     {
         $validator = validator($this->attributes, [
-            'id_kriteria'  => 'required|integer|min:1',
-            'sub_kriteria' => 'required|integer|min:1',
-            'nilai'   => 'required|integer|min:1',
+            'id_kriteria'  => 'required|numeric|min:1',
+            'sub_kriteria' => 'required|numeric|min:1',
+            'nilai'   => 'required|numeric|min:1',
         ]);
 
         if ($validator->fails()) {

@@ -137,10 +137,6 @@
     jQuery("#compose").modal("toggle");
   });
 
-  $("body").on("click", ".btn-simpan", function () {
-    Swal.fire("Data Disimpan!", "", "success");
-  });
-
   function kosongkan() {
     jQuery("#compose-form input[name=sub_kriteria]").val("");
     jQuery("#compose-form input[name=nilai]").val("");
